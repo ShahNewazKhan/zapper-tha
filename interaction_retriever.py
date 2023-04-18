@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 ZAPPER_THA_SA = os.environ.get('GCP_SA')
 # Setup BQ SA
-BQ = bigquery.Client.from_service_account_json('zapper_tha_sa.json')
+BQ = bigquery.Client.from_service_account_json(ZAPPER_THA_SA)
 
 def _get_interaction_query(CONTRACT_ADDRESS: str) -> str:
     """
