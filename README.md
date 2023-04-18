@@ -25,6 +25,10 @@ pip install -r requirements.txt
 GCP_SA=zapper_tha_sa.json python interaction_retriever.py 0xdac17f958d2ee523a2206206994597c13d831ec7
 ```
 
+Invoking the `interaction_retriever` with the address for the USDT contract will retrieve the top 10 addresses that has interacted with it print out an enriched dataframe of the query result set as a pandas dataframe. 
+
+It also flushes the dataframe as a parquet file into the `data/interactions` directory with files sharded by the `<contracted_address>_<query_processing_day>`.
+
 ```sh
 INFO:__main__:Extracting information for contract address: 0xdac17f958d2ee523a2206206994597c13d831ec7
 INFO:__main__:flushed dataframe to data/interactions
@@ -40,3 +44,8 @@ INFO:__main__:flushed dataframe to data/interactions
 8  0x6dfc34609a05bc22319fa4cce1d1e2929548c0d7         66884  0xdac17f958d2ee523a2206206994597c13d831ec7  2023-03-21  2023-04-18
 9  0x974caa59e49682cda0ad2bbe82983419a2ecc400         66804  0xdac17f958d2ee523a2206206994597c13d831ec7  2023-03-21  2023-04-18
 ```
+
+## Solution to Question #2
+
+### Assumptions
+**We only want to know the current holders of USDC, who have held the token during the last month**

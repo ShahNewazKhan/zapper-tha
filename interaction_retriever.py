@@ -63,10 +63,12 @@ df = query_job.to_dataframe()
 START_DATE = (datetime.now() - timedelta(weeks=4)).strftime("%Y-%m-%d")
 END_DATE = datetime.now().strftime("%Y-%m-%d")
 
-df['_CONTRACT_ADDRESS'] = CONTRACT_ADDRESS
+df['_contract_address'] = CONTRACT_ADDRESS
 df['_start_date'] = START_DATE
 df['_end_date'] =  END_DATE
+df['processing_time'] = datetime.now()
 
+# Flush dataframe to parquet 
 parquet_path = f'data/interactions'
 if not os.path.exists(parquet_path):
     os.makedirs(parquet_path)
