@@ -17,7 +17,7 @@ To run the `interaction retriever` app, you can pass in the contract address you
 To run the following code you need to pass in the path to a [GCP Service Account Key JSON](https://cloud.google.com/iam/docs/keys-create-delete) that has the [Big Query Job User role](https://cloud.google.com/iam/docs/understanding-roles#bigquery.jobUser) set to the `GCP_SA` envar.
 
 ```sh
-# Create and activate  virtulaenv and install dependencies
+# Create and activate  virtualenv and install dependencies
 virtualenv venv -p python3
 source venv/bin/activate 
 pip install -r requirements.txt
@@ -54,9 +54,9 @@ INFO:__main__:flushed dataframe to data/interactions
 
 ![token holders overview](assets/token_holders.drawio.png)
 
-In the context of this take-home assessment, I chose [DuckDB](https://duckdb.org/) as it provides a lightweight and efficient way to ingest parquet files, create views, and perform complex analytics queries. The ability to use the DuckDB CLI to ingest a SQL file with pointers to parquet files makes it easy to automate the process of ingesting data, creating views, and executing complex queries. The [out-of-core processing](https://duckdb.org/2021/06/25/querying-parquet.html) capabilities of DuckDB also make it well-suited for working with large datasets that may not fit into memory, while the [filter and projection pushdown](https://duckdb.org/2021/06/25/querying-parquet.html#automatic-filter--projection-pushdown) capabilities help to ensure that queries are executed as efficiently as possible.
+In the context of this take-home assessment, I chose [DuckDB](https://duckdb.org/) as it provides a lightweight and efficient way to ingest parquet files, create views, and perform OLAP workflows. The ability to use the DuckDB CLI to ingest a SQL file with pointers to parquet files makes it easy to automate the process of ingesting data, creating views, and executing complex queries. The [out-of-core processing](https://duckdb.org/2021/06/25/querying-parquet.html) capabilities of DuckDB also make it well-suited for working with large datasets that may not fit into memory, while the [filter and projection pushdown](https://duckdb.org/2021/06/25/querying-parquet.html#automatic-filter--projection-pushdown) capabilities help to ensure that queries are executed as efficiently as possible.
 
- is an embedded SQL OLAP database management system that is designed to be lightweight and efficient. It is designed to be used in applications that require fast, scalable, and flexible data analytics, and is particularly well-suited for use in data science and analytics applications.
+DuckDB is an embedded SQL OLAP database management system that is designed to be lightweight and efficient. It is designed to be used in applications that require fast, scalable, and flexible data analytics, and is particularly well-suited for use in data science and analytics applications.
 
 One of the key features of DuckDB is its support for out-of-core processing. This means that DuckDB is able to handle datasets that are too large to fit into memory, by using disk-based storage to store and manipulate the data. This makes it ideal for use with large datasets that may not fit into memory, such as parquet files.
 
