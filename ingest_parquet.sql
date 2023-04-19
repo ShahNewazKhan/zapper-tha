@@ -2,5 +2,5 @@
 .open ./zapper.duckdb
 
 -- read in parquet files as views 
-create view interactions as select * from read_parquet('data/interactions/*.parquet');
-create view token_holders as select * from read_parquet('data/token_holders/*.parquet');
+CREATE OR REPLACE VIEW interactions AS SELECT * FROM read_parquet('data/interactions/*.parquet');
+CREATE OR REPLACE VIEW token_holders As SELECT * FROM read_parquet('data/token_holders/*.parquet');
