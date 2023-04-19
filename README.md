@@ -205,7 +205,6 @@ Next, the script defines the smart contract's address and ABI. The contract's ad
 
 After defining the contract's address and ABI, the script uses the to_checksum_address method from eth_utils to ensure that the contract address is properly formatted with checksum.
 
-Finally, the script declares several methods to interact with the smart contract. The methods include transferring tokens, approving token transfers, querying token balances, querying the owner's address, and querying the symbol of the token. The script also defines a method to set certain parameters for the token contract, such as maximum fee and basis points. Additionally, the script contains several functions to manage blacklists, pausing and unpausing the token contract, and checking for upgrades to the contract.
 
 ### Run balance extractor
 ```bash
