@@ -156,3 +156,28 @@ D select * from token_holders where holder = '0x55fe002aeff02f77364de339a1292923
 │ 0x55fe002aeff02f77364de339a1292923a15844b8 │ 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 │ 2023-03-21  │ 2023-04-18 │ 2023-04-18 15:51:15.59525  │
 └────────────────────────────────────────────┴────────────────────────────────────────────┴─────────────┴────────────┴────────────────────────────┘
 ```
+
+## Solution to Question #3
+
+`balance_extractor` Python code that initializes a Web3 instance with a specific Ethereum node URL and interacts with an Ethereum smart contract. The contract's address, ABI, and checksum are defined. The ABI is a JSON file that specifies the methods and data types of the smart contract.
+
+The script imports two Python packages: `Web3` and `eth_utils`, [Web3py](https://web3py.readthedocs.io/en/stable/index.html) is a Python library for working with Ethereum that allows developers to interact with smart contracts and nodes. `Eth_utils` is a collection of utility functions for Ethereum.
+
+The script then initializes the web3 instance with a specified Ethereum node URL using the Web3(HTTPProvider) method.
+
+Next, the script defines the smart contract's address and ABI. The contract's address is a hexadecimal string that represents the location of the contract on the Ethereum network. The ABI is a list of dictionaries that describes the methods, events, and data types of the smart contract.
+
+After defining the contract's address and ABI, the script uses the to_checksum_address method from eth_utils to ensure that the contract address is properly formatted with checksum.
+
+Finally, the script declares several methods to interact with the smart contract. The methods include transferring tokens, approving token transfers, querying token balances, querying the owner's address, and querying the symbol of the token. The script also defines a method to set certain parameters for the token contract, such as maximum fee and basis points. Additionally, the script contains several functions to manage blacklists, pausing and unpausing the token contract, and checking for upgrades to the contract.
+
+### Run balance extractor
+```bash
+# Install deps 
+virtualenv venv -p python3
+source venv/bin/activate 
+pip install -r requirements.txt
+
+# Run the balance extractor
+python balance_extractor.py
+```
