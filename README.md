@@ -24,7 +24,9 @@ pip install -r requirements.txt
 
 # Set GCP Service account envar
 # Retrieve all interactions with USDT
-GCP_SA=zapper_tha_sa.json python interaction_retriever.py 0xdac17f958d2ee523a2206206994597c13d831ec7
+GCP_SA=zapper_tha_sa.json \
+DATE_INTERVAL=MONTH \
+python src/interaction_retriever.py 0xdac17f958d2ee523a2206206994597c13d831ec7
 ```
 
 Invoking the `interaction_retriever` with the address for the USDT contract will retrieve the top 10 addresses that has interacted with it print out an enriched dataframe of the query result set as a pandas dataframe. 
@@ -80,7 +82,7 @@ pip install -r requirements.txt
 # Ingest BQ data into parquet files for holders of USDT over the past month
 GCP_SA=zapper_tha_sa.json \
 DATE_INTERVAL=MONTH \
-python token_holder.py 0xdac17f958d2ee523a2206206994597c13d831ec7
+python src/token_holder.py 0xdac17f958d2ee523a2206206994597c13d831ec7
 ```
 
 Invoking the `token_holder.py` app with the [USTD](https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7) contract address will yeild the following output and flush the result set dataframe as a parquet file:
@@ -171,6 +173,14 @@ D select * from interactions;
 │ 20 rows                                                                                                                                              6 columns │
 └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+You can filter on `processing_time` to get the latest interactions data:
+
+```sql
+SELECT * FROM interactions WHERE CAST(processing_time AS DATE) > '2023-04-18';
+```
+
+You can see the tokens held by a specific `wallet address` with the following:
 
 ```sql
 D select * from token_holders where holder = '0x55fe002aeff02f77364de339a1292923a15844b8';
