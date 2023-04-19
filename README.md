@@ -2,6 +2,8 @@
 
 ## Solution for Question 1
 
+![interaction retriever overview](assets/interaction_retriever.drawio.png)
+
 The [interaction retriever](interaction_retriever.py) is a python application that, given a smart contract address on the ethereum chain, returns the top 10 addresses that has the most amount of interactions with the address. 
 
 The [_get_interaction_query](interaction_retriever.py#L15) function string interpolates the contract address we want to retrieve the interactions for using the following [SQL query template](interaction_retriever.py#L24). The interpolated SQL query selects data from the Ethereum network dataset on Google BigQuery to determine the top 10 Ethereum addresses that have had the most interactions with a given contract address in the last month.
@@ -49,6 +51,8 @@ INFO:__main__:flushed dataframe to data/interactions
 
 ### Assumptions
 **We only want to know the current holders of USDC, who have held the token during the last month**
+
+![token holders overview](assets/token_holders.drawio.png)
 
 In the context of this take-home assessment, I chose [DuckDB](https://duckdb.org/) as it provides a lightweight and efficient way to ingest parquet files, create views, and perform complex analytics queries. The ability to use the DuckDB CLI to ingest a SQL file with pointers to parquet files makes it easy to automate the process of ingesting data, creating views, and executing complex queries. The [out-of-core processing](https://duckdb.org/2021/06/25/querying-parquet.html) capabilities of DuckDB also make it well-suited for working with large datasets that may not fit into memory, while the [filter and projection pushdown](https://duckdb.org/2021/06/25/querying-parquet.html#automatic-filter--projection-pushdown) capabilities help to ensure that queries are executed as efficiently as possible.
 
@@ -159,7 +163,7 @@ D select * from token_holders where holder = '0x55fe002aeff02f77364de339a1292923
 
 ## Solution to Question #3
 
-`balance_extractor` Python code that initializes a Web3 instance with a specific Ethereum node URL and interacts with an Ethereum smart contract. The contract's address, ABI, and checksum are defined. The ABI is a JSON file that specifies the methods and data types of the smart contract.
+The `balance_extractor` Python script initializes a `Web3` instance with a specific Ethereum node URL and interacts with the [USDC](https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48#code) Ethereum smart contract. The contract's address, ABI, and checksum are defined. The ABI is a JSON (`python dictionary`) that specifies the methods and data types of the smart contract.
 
 The script imports two Python packages: `Web3` and `eth_utils`, [Web3py](https://web3py.readthedocs.io/en/stable/index.html) is a Python library for working with Ethereum that allows developers to interact with smart contracts and nodes. `Eth_utils` is a collection of utility functions for Ethereum.
 
